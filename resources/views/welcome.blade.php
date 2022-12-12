@@ -128,7 +128,7 @@
                     <div class="xl:w-4/12 lg:w-4/12 md:w-full px-8 py-6 border-l-2 border-gray-800 items-center justify-center flex flex-col">
                         <img src="{{ url('storage/img/logo') }}/{{ $item['img_name'] }}" alt=""
                         class="rounded-full w-48">
-                        <h2 class="text-lg sm:text-xl text-white font-medium title-font mb-2"> {{ $item->name }}</h2>
+                        <h2 class="text-lg sm:text-xl text-indigo-900 font-medium title-font mb-2"> {{ $item->name }}</h2>
                         <p class="leading-relaxed text-indigo-900 font-medium mb-4">{{ $item->document }}</p>
                     </div>
                 @endforeach
@@ -373,7 +373,6 @@
             }, 1000 / 60); // 60 fps
         };
     </script>
-    @dd($result)
 </body>
 
 </html>
