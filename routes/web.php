@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DocumentController;
@@ -37,7 +38,9 @@ Route::delete('/users/delete/{id}', [Controller::class, 'delete'])->name('users.
 //Documents routes
 Route::get('/documents', [DocumentController::class, 'documents'])->name('documents');
 Route::get('/documents/{id}', [DocumentController::class, 'show'])->name('documents.show');
-Route::get('/documents/create', [DocumentController::class, 'create'])->name('documents.create');
+
+Route::get('/documents/new', [DocumentController::class, 'teste'])->name('documents.new');
+
 Route::post('/documents/store', [DocumentController::class, 'store'])->name('documents.store');
 Route::get('/documents/edit/{id}', [DocumentController::class, 'edit'])->name('documents.edit');
 Route::post('/documents/update/{id}', [DocumentController::class, 'update'])->name('documents.update');
@@ -53,3 +56,15 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', [Controller::class , 'dashboard'])->name('dashboard');
 });
+
+
+//client
+Route::get('/client', [ClientController::class, 'index'])->name('client.index');
+Route::get('/client/create', [ClientController::class, 'create'])->name('client.create');
+Route::post('/client/store', [ClientController::class, 'store'])->name('client.store');
+Route::get('/client/edit/{id}', [ClientController::class, 'edit'])->name('client.edit');
+Route::post('/client/update/{id}', [ClientController::class, 'update'])->name('client.update');
+Route::delete('/client/delete/{id}', [ClientController::class, 'delete'])->name('client.destroy');
+Route::get('/client/login', [ClientController::class, 'login'])->name('client.login');
+Route::post('/client/enter', [ClientController::class, 'enter'])->name('client.enter');
+Route::get('client/dashboard', [ClientController::class, 'ClientDashboard'])->name('client.dashboard');

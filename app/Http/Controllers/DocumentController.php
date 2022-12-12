@@ -24,7 +24,7 @@ class DocumentController extends Controller
      */
     public function create()
     {
-        //
+        return 'create';
     }
 
     /**
@@ -75,6 +75,7 @@ class DocumentController extends Controller
         'user_id' => $id,
         'documents' => $document
        ];
+
        return view('documents.show', compact('data'));
     }
 
