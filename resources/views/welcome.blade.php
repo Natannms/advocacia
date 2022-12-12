@@ -35,7 +35,7 @@
                 <a href="/about" class="mr-5 hover:text-yellow-400">Quem somos</a>
                 <a href="#team" class="mr-5 hover:text-yellow-400">Equipe</a>
 
-                @if (Route::has('login'))
+                {{-- @if (Route::has('login'))
                     <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                         @auth
                             <a href="{{ url('/dashboard') }}" class="mr-5 hover:text-gray-900">Area Administrativa</a>
@@ -48,7 +48,7 @@
                             @endif
                         @endauth
                     </div>
-                @endif
+                @endif --}}
             </nav>
         </div>
     </header>
