@@ -17,6 +17,23 @@
         .bg-gray-1000 {
             background: rgb(29, 29, 29);
         }
+
+        /*
+            Media queries
+            480px // Extra small screen
+            768px // Small screen
+            992px // Medium screen
+            1200px // Large screen
+            1600px // Extra Large screen
+            1900px // Extra Large screen
+        */
+
+        /* @media (max-width: 480px) {
+           nav{
+               display: none;
+               /* background: red; */
+           }
+        } */
     </style>
 </head>
 
@@ -28,7 +45,7 @@
                     src="{{ url('storage/img/logo') }}/qma_icon.png"">
                 <span class="ml-3 text-xl text-white">QMA</span>
             </a>
-            <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center menu">
+            <nav class="max-sm:hidden md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center menu">
                 <a href="#area-atuacao" class="mr-5 hover:text-yellow-400">Areas de atuação</a>
                 <a href="#apresentacao-institucional" class="mr-5 hover:text-yellow-400">Apresentação Institucional</a>
                 <a href="#contact" class="mr-5 hover:text-yellow-400">Contato</a>
@@ -72,7 +89,7 @@
     </section>
 
     {{-- Area de atuação --}}
-    <section id="area-atuacao" class="text-gray-400 body-font bg-gray-1000 p-40">
+    <section id="area-atuacao" class="text-gray-400 body-font bg-gray-1000">
         <div class="container px-5 py-24 mx-auto">
             <div class="flex flex-col text-center w-full mb-20">
                 <h2 class="text-xs text-green-400 tracking-widest font-medium title-font mb-1">Veja mais</h2>
@@ -106,16 +123,16 @@
 
 
     {{-- paralax --}}
-    <section
-        class=" text-gray-400 body-font bg-gray-900 p-80 paralax bg-[url('{{ url('storage/img/logo') }}/bg4.jpg')] bg-cover bg-no-repeat bg-fixed">
+    {{-- <section
+        class=" text-gray-400 body-font bg-gray-900 paralax bg-[url('{{ url('storage/img/logo') }}/bg4.jpg')] bg-cover bg-no-repeat bg-fixed">
         <div class="flex flex-col text-center w-full mb-20">
-          <h2 class="text-white" style="font-size:45pt">EXCELÊNCIA COM FOCO NO RESULTADO AO CLIENTE </h2>
+          <h2 class="text-white">EXCELÊNCIA COM FOCO NO RESULTADO AO CLIENTE </h2>
         </div>
-    </section>
+    </section> --}}
 
      {{-- Team --}}
-     <section id="team" class="text-gray-400 body-font bg-white py-40">
-        <div class="container px-5 py-24 mx-auto">
+     <section id="team" class="text-gray-400 body-font bg-white">
+        <div class="  py-24 mx-auto">
             <div class="flex flex-col text-center w-full mb-20">
                 <h2 class="text-xs text-green-400 tracking-widest font-medium title-font mb-1">Veja mais</h2>
                 <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-indigo-900">Equipe
@@ -123,9 +140,9 @@
                 <p class="lg:w-2/3 mx-auto leading-relaxed text-gray-900">
                 Conheça nossa equipe de espcialistas </p>
             </div>
-            <div class="flex flex-wrap ">
+            <div class="flex flex-wrapjustify-center">
                 @foreach ($result['team'] as $key => $item)
-                    <div class="xl:w-4/12 lg:w-4/12 md:w-full px-8 py-6 border-l-2 border-gray-800 items-center justify-center flex flex-col">
+                    <div class="xl:w-4/12 lg:w-4/12 md:w-full px-8 py-6 sm:border-l-2 sm:border-gray-800 items-center justify-center flex flex-col">
                         <img src="{{ url('storage/img/logo') }}/{{ $item['img_name'] }}" alt=""
                         class="rounded-full w-48">
                         <h2 class="text-lg sm:text-xl text-indigo-900 font-medium title-font mb-2"> {{ $item->name }}</h2>
@@ -141,9 +158,9 @@
     </section>
 
     {{-- Apresentação insitutcional --}}
-    <section id="apresentacao-institucional" class="text-gray-400 bg-gray-1000 body-font py-40">
+    <section id="apresentacao-institucional" class="text-gray-400 bg-gray-1000 body-font">
         <div class="flex flex-col text-center w-full mb-20">
-            <h2 class="text-xs text-green-400 tracking-widest font-medium title-font mb-1">Veja mais</h2>
+            <h2 class="text-xs text-green-400 tracking-widest font-medium title-font mb-1 mt-10">Veja mais</h2>
             <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Apresentação Institucional
             </h1>
         </div>
@@ -244,11 +261,11 @@
                         Facebook</a>
                 </div>
                 <a href="mailto:{{ $email }}"
-                    class="text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-900 rounded text-lg w-96 flex justify-center items-center">
+                    class="text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-900 rounded text-lg flex justify-center items-center">
                     <i class="mr-4 fa fa-send text-white"></i>
                     Envie sua mensagem</a><br>
                 <a href="https://api.whatsapp.com/send?phone={{ $whatsappNumber }}&text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20Advocacia%20QMA."
-                    class="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg w-96 flex justify-center items-center">
+                    class="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg flex justify-center items-center">
                     <i class="mr-4 fa fa-whatsapp text-white"></i>
                     Whatsapp</a>
             </div>
