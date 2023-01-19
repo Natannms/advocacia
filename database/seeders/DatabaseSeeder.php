@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
 
         $occuoationArea = OccupationArea::create([
             'name' => 'Direito Constitucional',
+            'short_description'=>'O Departamento de Direito Constitucional atua na promoção de ações para o reconhecimento de direitos fundamentais e no reconhecimento da inconstitucionalidade/constitucionalidade de legislações federais, estaduais e municipais.'
         ]);
 
 
@@ -56,7 +57,7 @@ class DatabaseSeeder extends Seeder
                 'description' => 'Mandados de Segurança individuais e coletivos'
             ],
             [
-                'occupation' => $occuoationArea->id,
+                'occupa tion' => $occuoationArea->id,
                 'description' => 'Ações de Constitucionalidade (ADI, ADC, ADPF) e Mandados de Injunção'
             ],
 
@@ -66,6 +67,9 @@ class DatabaseSeeder extends Seeder
 
         $occupationArea2 = OccupationArea::create([
             'name' => 'Direito Administrativo',
+            'short_description' => '
+            O Departamento de Direito Administrativo atua na defesa do direito de servidores, terceiros que firmem contratos com a Administração Pública e para cidadãos.
+            '
         ]);
 
 
@@ -115,6 +119,7 @@ class DatabaseSeeder extends Seeder
 
         $occupationArea2 = OccupationArea::create([
             'name' => 'Direito Previdenciário',
+            'short_description' =>'O departamento de Direito Previdenciário tem sua atuação voltada ao reconhecimento do melhor benefício para trabalhadores e servidores públicos, além de auxiliar no planejamento para uma aposentadoria que garanta uma velhice despreocupada financeiramente.'
         ]);
 
         $occuoationAreaItems = [
@@ -177,6 +182,7 @@ class DatabaseSeeder extends Seeder
 
         $occupationArea2 = OccupationArea::create([
             'name' => 'Direito Eleitoral',
+            'short_description' =>'O Departamento de Direito Eleitoral presta suporte consultivo e contencioso para partidos, coligações, federações e candidatos em todas as questões jurídicas relativas a candidaturas, pleitos e organização partidária'
         ]);
 
         $occuoationAreaItems  = array("Assessoria jurídica para candidatos, coligações, partidos e federações", "Assessoria em convenção, registros de candidatura e debates", "Ações eleitorais (AIRC, AIJE, AIME, RCED, representações, entre outras)", "Ações por infidelidade partidária", "Prestações de contas eleitoral e partidária", "Assessoria para partidos políticos");
@@ -191,6 +197,8 @@ class DatabaseSeeder extends Seeder
 
         $occupationArea2 = OccupationArea::create([
             'name' => 'Direito Tributário',
+            'short_description' =>'O Departamento de Direito Tributário atua com o atendimento consultivo e contencioso para estruturação de sociedades para otimizar o impacto tributário, bem como propondo ações e elaborando defesas em caso de cobranças tributárias indevidas. Além disso, oferecemos suporte jurídico para formalização de parcelamentos e transações tributárias.
+            '
         ]);
 
         $occuoationAreaItems  = array("Consultoria tributária", "Defesa administrativa em autos de infração", "Defesa em execuções fiscais", "Ações declaratórias de inexistência de débito e anulatórias de débitos fiscais", "Restituição de tributos pagos indevidamente", "Atuação para reconhecimento de isenções fiscais (isenção IR, IPI, ICMS etc.)", "Planejamento tributário");
@@ -205,6 +213,7 @@ class DatabaseSeeder extends Seeder
 
         $occupationArea2 = OccupationArea::create([
             'name' => 'Direito Ambiental',
+            'short_description' =>'O Departamento de Direito Ambiental atua de forma consultiva e contenciosa para afastar riscos ambientais e obter licenças, além de oferecer suporte jurídico em ações que busquem indenizações e a aplicação de penalidades administrativas e criminais.'
         ]);
 
         $occuoationAreaItems  =array("Defesa prévia e recursos administrativos em autuações por infração ambiental", "Assessoria em Termo de Ajustamento de Conduta (TAC) e Plano de Recuperação em área degradada (PRAD)", "Assessoria para compensação de reserva ambiental", "Ações anulatórias de auto de infração ambiental", "Defesa em Execução Fiscal Ambiental");
@@ -219,6 +228,8 @@ class DatabaseSeeder extends Seeder
 
         $occupationArea2 = OccupationArea::create([
             'name' => 'Direito Penal',
+            'short_description' =>'O Departamento de Direito Penal é focada na defesa de cidadãos que estejam sendo investigados e processados pela prática de crimes, especialmente aqueles praticados contra a Administração Pública.
+            '
         ]);
 
         $occuoationAreaItems  =array("Defesa e acompanhamento de investigações criminais", "Defesa em ações penais, especial crimes contra a Administração Pública, ordem tributária, eleitorais, ambientais e econômicos", "Atuação como assistente de acusação no apoio a vítimas", "Defesa e representação de pessoas jurídicas em investigações e ações penais");
@@ -231,9 +242,10 @@ class DatabaseSeeder extends Seeder
 
         $occupationArea2 = OccupationArea::create([
             'name' => 'Direito Sucessório',
+            'short_description' =>'O Departamento de Direito Sucessória atua na organização patrimonial preventiva para redução do impacto tributário na transmissão hereditária, bem como oferece suporte jurídico para a escolha da forma menos onerosa e mais ágil para a conclusão do arrolamento/inventário.'
         ]);
 
-        $occuoationAreaItems  =array("Assistência em inventários extrajudiciais", "Assessoria para testamentos", "Atuação em ações de inventário judicial", "Arrolamento judicial", "Sobrepartilha de bens", "Anulação de partilha e testamentos", "Planejamento sucessório", "Divórcios extrajudiciais e judiciais");
+        $occuoationAreaItems  = array("Assistência em inventários extrajudiciais", "Assessoria para testamentos", "Atuação em ações de inventário judicial", "Arrolamento judicial", "Sobrepartilha de bens", "Anulação de partilha e testamentos", "Planejamento sucessório", "Divórcios extrajudiciais e judiciais");
         foreach ($occuoationAreaItems as $item) {
             OccupationAreaItem::create([
                 'occupation_area_id' => $occupationArea2->id,

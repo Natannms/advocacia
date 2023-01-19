@@ -8,12 +8,11 @@
     <title>QMA Advocacia</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="shortcut icon" href="{{url('storage/img/logo')}}/favicon.png" />
+    <link rel="shortcut icon" href="{{ url('storage/img/logo') }}/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
     <style>
-
         .bg-gray-1000 {
             background: rgb(29, 29, 29);
         }
@@ -32,8 +31,10 @@
            nav{
                display: none;
                /* background: red; */
-           }
-        } */
+        }
+        }
+
+        */
     </style>
 </head>
 
@@ -42,15 +43,17 @@
         <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             <a class="flex title-font font-medium  justify-center text-gray-900 mb-4 md:mb-0">
                 <img class=" object-cover object-center rounded w-12" alt="hero"
-                    src="{{ url('storage/img/logo') }}/qma_icon.png"">
+                    src="{{ url('storage/img/logo') }}/qma_icon.png">
                 <span class="ml-3 text-xl text-white">QMA</span>
             </a>
             <nav class="max-sm:hidden md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center menu">
-                <a href="#area-atuacao" class="mr-5 hover:text-yellow-400">Areas de atuação</a>
-                <a href="#apresentacao-institucional" class="mr-5 hover:text-yellow-400">Apresentação Institucional</a>
-                <a href="#contact" class="mr-5 hover:text-yellow-400">Contato</a>
-                <a href="/about" class="mr-5 hover:text-yellow-400">Quem somos</a>
-                <a href="#team" class="mr-5 hover:text-yellow-400">Equipe</a>
+                <a href="#area-atuacao" class="mr-5 hover:text-green-600 duration-300 uppercase">Areas de atuação</a>
+                <a href="#apresentacao-institucional"
+                    class="mr-5 hover:text-green-600 duration-300 uppercase">Apresentação
+                    Institucional</a>
+                <a href="#contact" class="mr-5 hover:text-green-600 duration-300 uppercase">Contato</a>
+                <a href="/about" class="mr-5 hover:text-green-600 duration-300 uppercase">Quem somos</a>
+                <a href="#team" class="mr-5 hover:text-green-600 duration-300 uppercase">Equipe</a>
 
                 {{-- @if (Route::has('login'))
                     <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
@@ -62,7 +65,7 @@
 
                             @if (Route::has('register'))
                                 <a href="{{ route('register') }}" class="mr-5 hover:text-gray-900">Register</a>
-                            @endif
+                {{      }}        @endif
                         @endauth
                     </div>
                 @endif --}}
@@ -71,15 +74,28 @@
     </header>
 
     {{-- hero --}}
-    <section class="text-gray-400 bg-[url('{{ url('storage/img/logo') }}/low-angle-view-of-skyscrapers3.jpg')] body-font py-40">
-        <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
-            <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero"
-                src="{{ url('storage/img/logo') }}/qma_logo.png"">
+    <section
+        class="text-gray-400
+    @foreach ($result['images'] as $image)
+        @if ($image->local == 'first_fold')
+            bg-[url('{{ url('storage/my_backgrounds') }}/{{ $image->image }}')]
+        @endif @endforeach
+
+    body-font py-40">
+        <div class="flex px-5 py-10 items-center justify-center flex-col bg-stone-100/50">
+
+
+            @foreach ($result['images'] as $image)
+                @if ($image->local == 'logo')
+                    <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero"
+                        src="{{ url('storage/img/logo') }}/{{ $image->image }}">
+                @endif
+            @endforeach
             <div class="text-center lg:w-2/3 w-full">
                 {{-- <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Microdosing synth tattooed vexillologist</h1> --}}
-                <p class="leading-relaxed mb-8 text-white text-2xl">A Queiroz, Muraro & Assi Advocacia tem o foco de encontrar
-                    soluções jurídicas para pessoas físicas e jurídicas, especialmente no ramo do Direito Público.
-                    .</p>
+                <p class="leading-relaxed mb-8 text-gray-800 text-2xl">A </br> <b class="text-green-800">Queiroz, Muraro
+                        & Assi Advocacia</b> </br>tem o foco de encontrar
+                     para pessoas físicas e jurídicas, especialmente no ramo do Direito Público.</p>
                 {{-- <div class="flex justify-center">
               <button class="inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">Button</button>
               <button class="ml-4 inline-flex text-gray-400 bg-gray-800 border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 hover:text-white rounded text-lg">Button</button>
@@ -92,7 +108,6 @@
     <section id="area-atuacao" class="text-gray-400 body-font bg-gray-1000">
         <div class="container px-5 py-24 mx-auto">
             <div class="flex flex-col text-center w-full mb-20">
-                <h2 class="text-xs text-green-400 tracking-widest font-medium title-font mb-1">Veja mais</h2>
                 <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Áreas de atuação
                 </h1>
 
@@ -100,10 +115,10 @@
             <div class="flex flex-wrap">
                 @foreach ($result['occupationAreas'] as $key => $item)
                     <div class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-800">
-                        <h2 class="text-lg sm:text-xl text-white font-medium title-font mb-2"> {{ $item->name }}</h2>
-                        <p class="leading-relaxed text-base mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. Dolor maxime voluptas perspiciatis tenetur repellendus illo iste veritatis aut, rem,
-                            iusto fugit doloribus perferendis quidem vitae debitis, dicta quos! Earum, velit?</p>
+                        <h2 class="text-lg sm:text-xl text-white font-medium title-font mb-2 uppercase"> {{ $item->name }}</h2>
+                        <p class="leading-relaxed text-base mb-4">
+                            {{ $item->short_description }}
+                        </p>
                         <a href="/area-de-atuacao/{{ $item->id }}"
                             class="text-green-400 inline-flex items-center">Ver mais
                             <svg fill="none" stroke="currentColor" stroke-linecap="Leia maisround"
@@ -115,7 +130,7 @@
                 @endforeach
             </div>
             <a href="{{ route('area_de_atuacao') }}"
-                class="flex mx-auto w-96 items-center justify-center mt-16 text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">
+                class="flex mx-auto w-96 items-center justify-center mt-16 text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded duration-300 text-lg">
                 Todas as áreas
             </a>
         </div>
@@ -130,44 +145,44 @@
         </div>
     </section> --}}
 
-     {{-- Team --}}
-     <section id="team" class="text-gray-400 body-font bg-white">
+    {{-- Team --}}
+    <section id="team" class="text-gray-400 body-font bg-white">
         <div class="  py-24 mx-auto">
             <div class="flex flex-col text-center w-full mb-20">
-                <h2 class="text-xs text-green-400 tracking-widest font-medium title-font mb-1">Veja mais</h2>
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-indigo-900">Equipe
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-indigo-900 uppercase">Equipe
                 </h1>
                 <p class="lg:w-2/3 mx-auto leading-relaxed text-gray-900">
-                Conheça nossa equipe de espcialistas </p>
+                    Conheça nossa equipe de especialistas </p>
             </div>
             <div class="flex flex-wrapjustify-center">
                 @foreach ($result['team'] as $key => $item)
-                    <div class="xl:w-4/12 lg:w-4/12 md:w-full px-8 py-6 sm:border-l-2 sm:border-gray-800 items-center justify-center flex flex-col">
+                    <div
+                        class="xl:w-4/12 lg:w-4/12 md:w-full px-8 py-6 sm:border-l-2 sm:border-gray-800 items-center justify-center flex flex-col">
                         <img src="{{ url('storage/img/logo') }}/{{ $item['img_name'] }}" alt=""
-                        class="rounded-full w-48">
-                        <h2 class="text-lg sm:text-xl text-indigo-900 font-medium title-font mb-2"> {{ $item->name }}</h2>
+                            class="rounded-full w-48">
+                        <h2 class="text-lg sm:text-xl text-indigo-900 font-medium title-font mb-2"> {{ $item->name }}
+                        </h2>
                         <p class="leading-relaxed text-indigo-900 font-medium mb-4">{{ $item->document }}</p>
                     </div>
                 @endforeach
             </div>
             <a href="{{ route('team.index') }}"
-                class="flex mx-auto w-96 items-center justify-center mt-16 text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">
-               Ver mais
+                class="flex mx-auto w-96 items-center justify-center mt-16 text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded duration-300 text-lg">
+                Ver mais
             </a>
         </div>
     </section>
 
     {{-- Apresentação insitutcional --}}
     <section id="apresentacao-institucional" class="text-gray-400 bg-gray-1000 body-font">
-        <div class="flex flex-col text-center w-full mb-20">
-            <h2 class="text-xs text-green-400 tracking-widest font-medium title-font mb-1 mt-10">Veja mais</h2>
-            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Apresentação Institucional
+        <div class="flex flex-col text-center w-full mb-20 mt-10">
+            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white uppercase">Apresentação Institucional
             </h1>
         </div>
         <div class="container px-5 py-24 mx-auto flex flex-wrap">
             <div class="lg:w-1/2 w-full mb-10 lg:mb-0 rounded-lg overflow-hidden">
                 <img alt="feature" class="object-cover object-center h-full w-full"
-                    src="{{ url('storage/img/logo') }}/bg1.png"">
+                    src="{{ url('storage/img/logo') }}/3qma.png">
             </div>
             <div class="flex flex-col flex-wrap lg:py-6 -mb-10 lg:w-1/2 lg:pl-12 lg:text-left text-center">
                 <div class="flex flex-col mb-10 lg:items-start items-center">
@@ -182,9 +197,9 @@
                         <h2 class="text-white text-lg title-font font-medium mb-3">Quem somos</h2>
                         <p class="leading-relaxed text-base">
                             Nosso escritório surgiu a partir da unidade de
-                            competências e valores dos nossos sócios que, juntos, pretendem oferecer serviços jurídicos
+                            <strong>competências</strong> e <strong>valores</strong> dos nossos sócios que, juntos, pretendem oferecer serviços jurídicos
                             de
-                            excelência com foco na apresentação de soluções jurídicas.
+                            <strong>excelência </strong> com foco na apresentação <strong>soluções jurídicas</strong>.
                         </p>
                         <a href="{{ route('about.index') }}" class="mt-3 text-green-400 inline-flex items-center">ver
                             mais
@@ -199,14 +214,18 @@
         </div>
     </section>
     {{-- CTA --}}
+    @php
+        $whatsappNumber = '43988427402';
+    @endphp
     <section class="text-gray-400 bg-gray-700 body-font">
         <div class="container px-5 py-24 mx-auto">
             <div class="lg:w-2/3 flex flex-col sm:flex-row sm:items-center items-start mx-auto">
                 <h1 class="flex-grow sm:pr-16 text-2xl font-medium title-font text-white">Solicite uma reunião online
                     com nossos
                     advogados especialistas</h1>
-                <button
-                    class="flex-shrink-0 text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg mt-10 sm:mt-0">Solicitar</button>
+                <a href="https://api.whatsapp.com/send?phone={{ $whatsappNumber }}&text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20Advocacia%20QMA."
+                    class="flex-shrink-0 text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded duration-300 text-lg mt-10 sm:mt-0">Solicitar
+                </a>
             </div>
         </div>
     </section>
@@ -234,7 +253,7 @@
                     style="filter: grayscale(1) contrast(1.2) opacity(0.16);"></iframe>
                 <div class="bg-gray-900 relative flex flex-wrap py-6 rounded shadow-md">
                     <div class="lg:w-1/2 px-6">
-                        <h2 class="title-font font-semibold text-white tracking-widest text-xs">ADDRESS</h2>
+                        <h2 class="title-font font-semibold text-white tracking-widest text-xs">ENDEREÇOS</h2>
                         @foreach ($enderecos as $item)
                             <p class="mt-1 text-gray-400 text-sm">{{ $item }}</p><br>
                         @endforeach
@@ -242,7 +261,7 @@
                     <div class="lg:w-1/2 px-6 mt-4 lg:mt-0">
                         <h2 class="title-font font-semibold text-white tracking-widest text-xs">EMAIL</h2>
                         <a class="text-green-400 leading-relaxed">{{ $email }}</a>
-                        <h2 class="title-font font-semibold text-white tracking-widest text-xs mt-4">PHONE</h2>
+                        <h2 class="title-font font-semibold text-white tracking-widest text-xs mt-4">TELEFONE</h2>
                         <p class="leading-relaxed text-gray-400">(43) 9 8842-7402</p>
                     </div>
                 </div>
@@ -252,20 +271,20 @@
 
                 <div class="socials flex flex-row mb-10 mt-10">
                     <a href="{{ $instagram }}"
-                        class="text-pink-900  border-0 py-2 px-6 focus:outline-none hover:bg-pink-400 hover:text-white  rounded text-lg w-48 flex justify-center items-center">
+                        class="text-white mr-3 border-0 py-2 px-6 focus:outline-none bg-pink-600 hover:bg-pink-700 hover:text-white duration-300 rounded text-lg w-48 flex justify-center items-center">
                         <i class="mr-4 fa fa-instagram text-pink-900 "></i>
                         Instagram</a>
                     <a href="{{ $instagram }}"
-                        class="text-blue-900  border-0 py-2 px-6 focus:outline-none hover:bg-blue-400 hover:text-white  rounded text-lg w-48 flex justify-center items-center">
+                        class="text-white  border-0 py-2 px-6 focus:outline-none bg-blue-700 hover:bg-blue-800 hover:text-white duration-300 rounded text-lg w-48 flex justify-center items-center">
                         <i class="mr-4 fa fa-facebook-official text-blue-900  "></i>
                         Facebook</a>
                 </div>
                 <a href="mailto:{{ $email }}"
-                    class="text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-900 rounded text-lg flex justify-center items-center">
+                    class="text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-900 rounded duration-300 text-lg flex justify-center items-center">
                     <i class="mr-4 fa fa-send text-white"></i>
                     Envie sua mensagem</a><br>
                 <a href="https://api.whatsapp.com/send?phone={{ $whatsappNumber }}&text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20Advocacia%20QMA."
-                    class="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg flex justify-center items-center">
+                    class="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded duration-300 text-lg flex justify-center items-center">
                     <i class="mr-4 fa fa-whatsapp text-white"></i>
                     Whatsapp</a>
             </div>
@@ -390,6 +409,7 @@
             }, 1000 / 60); // 60 fps
         };
     </script>
+
 </body>
 
 </html>

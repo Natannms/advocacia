@@ -4,6 +4,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\OccupationAreaController;
 use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
@@ -49,12 +50,24 @@ Route::delete('/documents/delete/{id}', [DocumentController::class, 'delete'])->
 Route::get('/area-de-atuacao/{id}', [OccupationAreaController::class, 'show'])->name('area_de_atuacao');
 Route::get('/area-de-atuacao', [OccupationAreaController::class, 'index'])->name('area_de_atuacao');
 
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
     Route::get('/dashboard', [Controller::class , 'dashboard'])->name('dashboard');
+    Route::get('/imagens', [ImagesController::class , 'index'])->name('images.index');
+    Route::post('/imagens/store', [ImagesController::class , 'store'])->name('image.store');
+    Route::get('/imagens/delete/{id}', [ImagesController::class , 'destroy'])->name('image.delete');
+
+    Route::post('/logo/store', [ImagesController::class , 'logoStore'])->name('logo.store');
+    Route::get('/logo', [ImagesController::class , 'logoIndex'])->name('logo.index');
+
+    Route::get('/dashboard/area-de-atuacao', [OccupationAreaController::class, 'dashboardOccupationAreaIndex'])->name('dashboard.OccupationAreaIndex');
+    Route::post('/occupationArea', [OccupationAreaController::class, 'store'])->name('occupationArea.store');
+
+
 });
 
 

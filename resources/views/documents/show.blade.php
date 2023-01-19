@@ -119,4 +119,3 @@
         </div>
     </div>
 </x-app-layout>
-@dd($data)

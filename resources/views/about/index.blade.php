@@ -22,7 +22,7 @@
         <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             <a class="flex title-font font-medium  justify-center text-gray-900 mb-4 md:mb-0">
                 <img class=" object-cover object-center rounded w-12" alt="hero"
-                    src="{{ url('storage/img/logo') }}/qma_icon.png"">
+                    src="{{ url('storage/img/logo') }}/qma_icon.png">
                 <span class="ml-3 text-xl text-white">QMA</span>
             </a>
             <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">

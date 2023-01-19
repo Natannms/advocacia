@@ -20,29 +20,12 @@
         <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             <a class="flex title-font font-medium  justify-center text-gray-900 mb-4 md:mb-0">
                 <img class=" object-cover object-center rounded w-12" alt="hero"
-                    src="{{ url('storage/img/logo') }}/qma_icon.png"">
+                    src="{{ url('storage/img/logo') }}/qma_icon.png">
                 <span class="ml-3 text-xl text-white">QMA</span>
             </a>
             <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-                <a class="mr-5 hover:text-gray-900">First Link</a>
-                <a class="mr-5 hover:text-gray-900">Second Link</a>
-                <a class="mr-5 hover:text-gray-900">Third Link</a>
-                <a class="mr-5 hover:text-gray-900">Fourth Link</a>
+                <a href="/" class="mr-5 hover:text-gray-900">Voltar</a>
 
-                @if (Route::has('login'))
-                    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                        @auth
-                            <a href="{{ url('/dashboard') }}" class="mr-5 hover:text-gray-900">Area Administrativa</a>
-                        @else
-                            <a href="{{ route('login') }}" class="mr-5 hover:text-gray-900">Log
-                                in</a>
-
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="mr-5 hover:text-gray-900">Register</a>
-                            @endif
-                        @endauth
-                    </div>
-                @endif
             </nav>
         </div>
     </header>
@@ -66,9 +49,10 @@
     {{-- Apresentação insitutcional --}}
     <section class="text-gray-400 bg-gray-1000 body-font py-40">
         <div class="flex flex-col text-center w-full mb-20">
-            <h2 class="text-xs text-green-400 tracking-widest font-medium title-font mb-1">Veja mais</h2>
             <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">{{$occupationArea['occupationArea']->name}}</h1>
-            <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ipsum nisi earum blanditiis doloremque. Illo dolorem a tempora at suscipit, sed eos nobis sunt omnis, cum quas, est consequuntur placeat?</p>
+            <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
+                {{ $occupationArea['occupationArea']->short_description}}
+            </p>
         </div>
         <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
             @foreach ($occupationArea['occupationAreaItem'] as $key => $item )
@@ -144,7 +128,7 @@
                         class="w-full bg-gray-800 rounded border border-gray-700 focus:border-green-500 focus:ring-2 focus:ring-green-900 h-32 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
                 </div>
                 <button
-                    class="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">Enviar</button>
+                    class="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded duration-300 text-lg">Enviar</button>
             </div>
         </div>
     </section>
@@ -202,7 +186,6 @@
             </span>
         </div>
     </footer>
-    @dd($occupationArea)
 </body>
 
 </html>

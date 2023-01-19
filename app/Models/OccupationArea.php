@@ -11,6 +11,7 @@ class OccupationArea extends Model
 
     protected $fillable = [
         'name',
+        'short_description'
     ];
 
     public function occupationAreaItems()

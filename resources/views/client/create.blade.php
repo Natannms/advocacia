@@ -16,7 +16,7 @@
 </head>
 
 <body class="bg-gray-1000">
-    <header class="text-gray-400 body-font fixed bg-gray-1000 w-screen border-b-2 border-yellow-500/30">
+    <header class="text-gray-400 body-font bg-gray-1000 w-screen border-b-2 border-yellow-500/30">
         <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             <a class="flex title-font font-medium  justify-center text-gray-900 mb-4 md:mb-0">
                 <img class=" object-cover object-center rounded w-12" alt="hero"
@@ -27,8 +27,8 @@
         </div>
     </header>
     {{-- if success get succcess message --}}
-        @if (session('success'))
-    <section class="mx-auto flex flex-col sm:flex-nowrap flex-wrap items-center bg-gray-50">
+    @if (session('success'))
+        <section class="mx-auto flex flex-col sm:flex-nowrap flex-wrap items-center bg-gray-50">
             <div class="alert alert-success text-white bg-green-600 font-bold p-4 w-full rounded">
                 {{ session('success') }}
             </div>
@@ -39,7 +39,7 @@
                     Documentos</a>
             </div>
         </section>
-        @else
+    @else
         <form action="{{ route('client.store') }}" method="POST"
             class=" px-40 py-40 mx-auto flex flex-col sm:flex-nowrap flex-wrap items-center bg-gray-50">
             @csrf
@@ -264,7 +264,8 @@
                         @enderror
                     </div>
                     <div class="relative mb-4 mr-4">
-                        <label for="atua_na_esfera" class="leading-7 text-sm text-gray-700">Caso seja servidor público,
+                        <label for="atua_na_esfera" class="leading-7 text-sm text-gray-700">Caso seja servidor
+                            público,
                             atua na esfera: </label>
                         <input required type="text" id="atua_na_esfera" name="atua_na_esfera"
                             class="w-full bg-white rounded border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-900 text-base outline-none text-gray-900 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
@@ -285,7 +286,7 @@
         </form>
     @endif
     {{-- footer --}}
-    <footer class="text-gray-400 bg-gray-1000 body-font">
+    {{-- <footer class="text-gray-400 bg-gray-1000 w-full">
         <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
             <a class="flex title-font font-medium items-center md:justify-start justify-center text-white">
                 <img class=" object-cover object-center rounded w-12" alt="hero"
@@ -332,7 +333,7 @@
                 </a>
             </span>
         </div>
-    </footer>
+    </footer> --}}
 
 </body>
 

@@ -42,4 +42,3 @@
     </div>
 </x-app-layout>
 {{ $data['users']->links() }}
-@dd($data)

@@ -20,29 +20,12 @@
         <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             <a class="flex title-font font-medium  justify-center text-gray-900 mb-4 md:mb-0">
                 <img class=" object-cover object-center rounded w-12" alt="hero"
-                    src="{{ url('storage/img/logo') }}/qma_icon.png"">
+                    src="{{ url('storage/img/logo') }}/qma_icon.png">
                 <span class="ml-3 text-xl text-white">QMA</span>
             </a>
             <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-                <a class="mr-5 hover:text-gray-900">First Link</a>
-                <a class="mr-5 hover:text-gray-900">Second Link</a>
-                <a class="mr-5 hover:text-gray-900">Third Link</a>
-                <a class="mr-5 hover:text-gray-900">Fourth Link</a>
+                <a href="/" class="mr-5 hover:text-gray-900">Voltar</a>
 
-                @if (Route::has('login'))
-                    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                        @auth
-                            <a href="{{ url('/dashboard') }}" class="mr-5 hover:text-gray-900">Area Administrativa</a>
-                        @else
-                            <a href="{{ route('login') }}" class="mr-5 hover:text-gray-900">Log
-                                in</a>
-
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="mr-5 hover:text-gray-900">Register</a>
-                            @endif
-                        @endauth
-                    </div>
-                @endif
             </nav>
         </div>
     </header>
@@ -162,7 +145,6 @@
             </span>
         </div>
     </footer>
-    @dd($company)
 </body>
 
 </html>
