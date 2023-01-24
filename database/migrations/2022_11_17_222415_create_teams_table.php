@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('name');
-            $table->string('document');
-            $table->string('img_name');
+            $table->string('document')->nullable();
+            $table->string('img_name')->nullable();
             $table->timestamps();
         });
     }
