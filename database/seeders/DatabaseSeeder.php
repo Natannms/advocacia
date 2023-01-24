@@ -9,6 +9,7 @@ use App\Models\Graduation;
 use App\Models\OccupationArea;
 use App\Models\OccupationAreaItem;
 use App\Models\Team;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -25,10 +26,15 @@ class DatabaseSeeder extends Seeder
         \App\Models\Document::factory(10)->create();
         \App\Models\Post::factory(10)->create();
         \App\Models\Comment::factory(10)->create();
-        \App\Models\User::factory()->create([
+        $user = User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@admin',
             'password' => bcrypt('admin'),
+        ]);
+
+        \App\Models\Team::factory()->create([
+            'name' => 'admin',
+            'user_id' => $user->id,
         ]);
 
 

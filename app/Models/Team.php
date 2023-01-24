@@ -11,6 +11,7 @@ class Team extends Model
 
     protected $fillable = [
         'name',
+        'user_id',
         'document',
         'img_name',
     ];
