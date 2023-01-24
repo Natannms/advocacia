@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="input-group flex flex-col ml-4 text-sm ">
-                    <button type="submit" class="bg-indigo-600 text-white rounded h-8 w-64 py-2 px-3">Enviar</button>
+                    <button type="submit" class="bg-green-600 text-white rounded h-8 w-64 py-2 px-3">Enviar</button>
                 </div>
             </form>
         </div>
@@ -49,8 +49,8 @@
                 {{-- <x-jet-welcome /> --}}
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
                     <div class="mt-8  ">
-                        <h2 class="text-2xl text-indigo-600">Seja bem vindo(a)</h2>
-                        <p class="text-sm text-indigo-500">{{ $data['user']->name }}</p>
+                        <h2 class="text-2xl text-green-600">Seja bem vindo(a)</h2>
+                        <p class="text-sm text-green-500">{{ $data['user']->name }}</p>
                     </div>
                     <div class="py-5">
                         <p class=" text-sm text-gray-400">
@@ -58,11 +58,11 @@
                         </p>
                     </div>
                     {{-- documents --}}
-                    <div class="mt-8 text-indigo-600 w-full ">
+                    <div class="mt-8 text-green-600 w-full ">
                         @foreach ($data['documents'] as $key => $document)
                             @switch($document->extension)
                                 @case('pdf')
-                                    <div class="flex justify-between items-center mt-4 border-2 border-b-indigo-500 py-2 px-2">
+                                    <div class="flex justify-between items-center mt-4 border-2 border-b-green-500 py-2 px-2">
                                         <div class="flex items">
                                             <span class="material-symbols-outlined text-red-600">
                                                 picture_as_pdf

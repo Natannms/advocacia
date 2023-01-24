@@ -10,21 +10,21 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 {{-- <x-jet-welcome /> --}}
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-                    <div class="mt-8 text-2xl text-indigo-600">
+                    <div class="mt-8 text-2xl text-green-600">
                         Clientes
                     </div>
 
-                    <div class="mt-6 text-gray-700 bg-gray-700 px-4 py-4">
+                    <div class="mt-6 text-gray-200  px-4 py-4">
                         <ul
-                            class="w-full text-sm font-medium text-gray-90 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-dark">
+                            class="w-full text-sm font-medium text-gray-90 rounded-lg border border-gray-200 dark:bg-gray-200 dark:border-gray-600 dark:text-dark">
                             @foreach ($data['users'] as $key => $user)
                                 <li class="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600 flex justify-between">
-                                    <span>{{ $user->name}}</span>
+                                    <span class="text-gray-700">{{ $user->name}}</span>
                                     <div class="actions flex">
                                         <a href="{{ route('documents.show', $user->id) }}"
-                                            class="text-indigo-600 hover:text-purple-900 ml-4">Documents</a>
+                                            class="text-green-600 hover:text-purple-900 ml-4">Documents</a>
                                         <a href="{{ route('users.edit', $user->id) }}"
-                                            class="text-indigo-600 hover:text-indigo-900 ml-4">Editar</a>
+                                            class="text-green-600 hover:text-green-900 ml-4">Editar</a>
                                         <form class="ml-4" action="{{ route('users.destroy', $user->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')

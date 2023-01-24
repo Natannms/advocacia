@@ -28,6 +28,11 @@
                     <x-jet-input id="name" class="block mt-1 w-96" type="text" name="name" :value="old('name')"
                         required autofocus />
                 </div>
+                <div>
+                    <x-jet-label for="occ" value="{{ __('descrição curta') }}" />
+                    <x-jet-input id="short_description" class="block mt-1 w-96" type="text" name="short_description" :value="old('short_description')"
+                        required autofocus />
+                </div>
                 <div class="mb-4 mt-4 flex flex-col">
                     <textarea name="description"  id="summernote" cols="100" rows="10">
                     </textarea>

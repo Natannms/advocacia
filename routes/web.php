@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\OccupationAreaController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
@@ -51,6 +52,8 @@ Route::get('/area-de-atuacao/{id}', [OccupationAreaController::class, 'show'])->
 Route::get('/area-de-atuacao', [OccupationAreaController::class, 'index'])->name('area_de_atuacao');
 
 
+Route::get('post/{id}', [PostController::class, 'show'])->name('post.show');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -67,6 +70,15 @@ Route::middleware([
     Route::get('/dashboard/area-de-atuacao', [OccupationAreaController::class, 'dashboardOccupationAreaIndex'])->name('dashboard.OccupationAreaIndex');
     Route::post('/occupationArea', [OccupationAreaController::class, 'store'])->name('occupationArea.store');
 
+
+    Route::get('dashboard/blog', [PostController::class, 'dashboardIndex'])->name('dashboard.blog.index');
+
+
+    Route::get('/post/create/new', [PostController::class, 'create'])->name('post.create');
+    Route::get('/post/edit/{id}', [PostController::class, 'edit'])->name('post.edit');
+    Route::put('/post/update', [PostController::class, 'update'])->name('post.update');
+    Route::delete('/post/delete/{id}', [PostController::class, 'destroy'])->name('post.delete');
+    Route::post('/post/store', [PostController::class, 'store'])->name('post.store');
 
 });
 

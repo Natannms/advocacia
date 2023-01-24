@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Image;
 use App\Models\OccupationArea;
 use App\Models\OccupationAreaItem;
+use App\Models\Post;
 use App\Models\Team;
 use Illuminate\Http\Request;
 
@@ -49,12 +50,15 @@ class OccupationAreaController extends Controller
         $occupationAreas = OccupationArea::paginate(4);
         $team  = Team::all();
         $images = Image::all();
+        $Posts = Post::orderBy('id', 'DESC')->paginate(6);
 
         $result = [
             'occupationAreas' => $occupationAreas,
             'team' => $team,
             'images' => $images,
+            'Posts' => $Posts,
         ];
+
         return view('welcome', compact('result'));
     }
 
@@ -79,12 +83,14 @@ class OccupationAreaController extends Controller
 
         $request->validate([
             'name' => 'required',
+            'short_description' => 'required',
             'description' => 'required'
         ]);
 
 
         $occupationArea = OccupationArea::create([
             'name' => $request->name,
+            'short_description' => $request->short_description,
         ]);
 
         if (!$occupationArea) {
@@ -117,7 +123,7 @@ class OccupationAreaController extends Controller
             }
         }
 
-        return $items;
+        return redirect()->back()->with('success', 'Área de atuação criada com sucesso');
     }
 
     /**

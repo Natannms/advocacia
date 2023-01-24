@@ -23,11 +23,14 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(10)->create();
         \App\Models\Client::factory(3)->create();
         \App\Models\Document::factory(10)->create();
+        \App\Models\Post::factory(10)->create();
+        \App\Models\Comment::factory(10)->create();
         \App\Models\User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@admin',
             'password' => bcrypt('admin'),
         ]);
+
 
         $occuoationArea = OccupationArea::create([
             'name' => 'Direito Constitucional',

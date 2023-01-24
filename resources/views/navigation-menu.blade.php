@@ -6,7 +6,8 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                        <img class=" object-cover object-center rounded w-12" alt="hero"
+                        src="{{ url('storage/img/logo') }}/qma_icon.png">
                     </a>
                 </div>
 
@@ -17,6 +18,9 @@
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('dashboard.OccupationAreaIndex') }}" :active="request()->routeIs('dashboard.OccupationAreaIndex')">
                         {{ __('Areas de atuação') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('dashboard.blog.index') }}" :active="request()->routeIs('dashboard.blog.index')">
+                        {{ __('Configurações do blog') }}
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -96,15 +100,15 @@
                         <x-slot name="content">
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Account') }}
+                                {{ __('Configurações') }}
                             </div>
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Profile') }}
+                                {{ __('Perfil') }}
                             </x-jet-dropdown-link>
 
                             <x-jet-dropdown-link href="{{ route('images.index') }}">
-                                {{ __('Background') }}
+                                {{ __('Plano de fundo') }}
                             </x-jet-dropdown-link>
 
                             <x-jet-dropdown-link href="{{ route('logo.index') }}">
@@ -171,7 +175,7 @@
             <div class="mt-3 space-y-1">
                 <!-- Account Management -->
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                    {{ __('Profile') }}
+                    {{ __('Perfil') }}
                 </x-jet-responsive-nav-link>
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())

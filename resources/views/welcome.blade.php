@@ -72,30 +72,40 @@
             </nav>
         </div>
     </header>
-
     {{-- hero --}}
     <section
         class="text-gray-400
-    @foreach ($result['images'] as $image)
-        @if ($image->local == 'first_fold')
-            bg-[url('{{ url('storage/my_backgrounds') }}/{{ $image->image }}')]
-        @endif @endforeach
+
+        @foreach ($result['images'] as $image)
+            @if ($image->local == 'first_fold')
+                bg-[url('{{ url('storage/my_backgrounds') }}/{{ $image->image }}')]
+            @else
+                bg-white
+            @endif @endforeach
 
     body-font py-40">
-        <div class="flex px-5 py-10 items-center justify-center flex-col bg-stone-100/50">
+    <div class="bg-white w-full">
 
-
-            @foreach ($result['images'] as $image)
-                @if ($image->local == 'logo')
-                    <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero"
-                        src="{{ url('storage/img/logo') }}/{{ $image->image }}">
-                @endif
-            @endforeach
+    </div>
+        <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+            <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero"
+                src="{{ url('storage/img/logo') }}/qma_logo.png">
             <div class="text-center lg:w-2/3 w-full">
                 {{-- <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Microdosing synth tattooed vexillologist</h1> --}}
-                <p class="leading-relaxed mb-8 text-gray-800 text-2xl">A </br> <b class="text-green-800">Queiroz, Muraro
-                        & Assi Advocacia</b> </br>tem o foco de encontrar
-                     para pessoas físicas e jurídicas, especialmente no ramo do Direito Público.</p>
+                <p
+                    class="
+                    @foreach ($result['images'] as $image)
+                        @if (!$image->local == 'first_fold')
+                            leading-relaxed mb-8 text-white text-2xl
+                        @else
+                            leading-relaxed mb-8 text-black text-2xl
+                        @endif @endforeach
+
+                ">
+                    A Queiroz, Muraro & Assi Advocacia tem o foco de
+                    encontrar
+                    soluções jurídicas para pessoas físicas e jurídicas, especialmente no ramo do Direito Público.
+                    .</p>
                 {{-- <div class="flex justify-center">
               <button class="inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">Button</button>
               <button class="ml-4 inline-flex text-gray-400 bg-gray-800 border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 hover:text-white rounded text-lg">Button</button>
@@ -115,7 +125,8 @@
             <div class="flex flex-wrap">
                 @foreach ($result['occupationAreas'] as $key => $item)
                     <div class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-800">
-                        <h2 class="text-lg sm:text-xl text-white font-medium title-font mb-2 uppercase"> {{ $item->name }}</h2>
+                        <h2 class="text-lg sm:text-xl text-white font-medium title-font mb-2 uppercase">
+                            {{ $item->name }}</h2>
                         <p class="leading-relaxed text-base mb-4">
                             {{ $item->short_description }}
                         </p>
@@ -197,7 +208,8 @@
                         <h2 class="text-white text-lg title-font font-medium mb-3">Quem somos</h2>
                         <p class="leading-relaxed text-base">
                             Nosso escritório surgiu a partir da unidade de
-                            <strong>competências</strong> e <strong>valores</strong> dos nossos sócios que, juntos, pretendem oferecer serviços jurídicos
+                            <strong>competências</strong> e <strong>valores</strong> dos nossos sócios que, juntos,
+                            pretendem oferecer serviços jurídicos
                             de
                             <strong>excelência </strong> com foco na apresentação <strong>soluções jurídicas</strong>.
                         </p>
@@ -210,6 +222,198 @@
                         </a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+    {{-- Blog --}}
+    <section class="text-gray-800 bg-gray-200 body-font">
+        <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-col text-center w-full mb-20">
+                <h1 class="text-2xl font-medium title-font mb-4 text-green-800 tracking-widest">QMA Advocacia</h1>
+                <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Veja aqui nossos conteúdos exclusivos recentes.
+                </p>
+            </div>
+            <div class="flex flex-wrap -m-4">
+                @foreach ($result['Posts'] as $post)
+                    <div onclick="showPostInPage({{ $post->id }})" class="p-4 lg:w-1/2 cursor-pointer">
+                        <div
+                            class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
+                            <img alt="team"
+                                class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4"
+                                src="{{ $post->image }}">
+                            <div class="flex-grow sm:pl-8">
+                                <h2 class="title-font font-medium text-lg text-green-800">{{ $post->title }}</h2>
+                                <p class="mb-4">{{ $post->short_description }}</p>
+                                <span class="inline-flex">
+                                    @if ($post->facebook_link)
+                                        <a class="text-gray-500">
+                                            <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+                                                viewBox="0 0 24 24">
+                                                <path
+                                                    d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                    @endif
+
+                                    {{-- @if ($post->twitter_link)
+                                        <a class="ml-2 text-gray-500">
+                                            <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+                                                viewBox="0 0 24 24">
+                                                <path
+                                                    d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                    @endif
+
+                                    @if ($post->instagram_link)
+                                        <a class="ml-2 text-gray-500">
+                                            <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+                                                viewBox="0 0 24 24">
+                                                <path
+                                                    d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                    @endif --}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                    {{-- links --}}
+                    {{$result['Posts']->links()}}
+
+                {{-- <div class="p-4 lg:w-1/2">
+                    <div
+                        class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
+                        <img alt="team"
+                            class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4"
+                            src="https://dummyimage.com/201x201">
+                        <div class="flex-grow sm:pl-8">
+                            <h2 class="title-font font-medium text-lg text-white">Alper Kamu</h2>
+                            <h3 class="text-gray-500 mb-3">Designer</h3>
+                            <p class="mb-4">DIY tote bag drinking vinegar cronut adaptogen squid fanny pack
+                                vaporware.</p>
+                            <span class="inline-flex">
+                                <a class="text-gray-500">
+                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+                                        viewBox="0 0 24 24">
+                                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z">
+                                        </path>
+                                    </svg>
+                                </a>
+                                <a class="ml-2 text-gray-500">
+                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+                                        viewBox="0 0 24 24">
+                                        <path
+                                            d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
+                                        </path>
+                                    </svg>
+                                </a>
+                                <a class="ml-2 text-gray-500">
+                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+                                        viewBox="0 0 24 24">
+                                        <path
+                                            d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 lg:w-1/2">
+                    <div
+                        class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
+                        <img alt="team"
+                            class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4"
+                            src="https://dummyimage.com/204x204">
+                        <div class="flex-grow sm:pl-8">
+                            <h2 class="title-font font-medium text-lg text-white">Atticus Finch</h2>
+                            <h3 class="text-gray-500 mb-3">UI Developer</h3>
+                            <p class="mb-4">DIY tote bag drinking vinegar cronut adaptogen squid fanny pack
+                                vaporware.</p>
+                            <span class="inline-flex">
+                                <a class="text-gray-500">
+                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+                                        viewBox="0 0 24 24">
+                                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z">
+                                        </path>
+                                    </svg>
+                                </a>
+                                <a class="ml-2 text-gray-500">
+                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+                                        viewBox="0 0 24 24">
+                                        <path
+                                            d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
+                                        </path>
+                                    </svg>
+                                </a>
+                                <a class="ml-2 text-gray-500">
+                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+                                        viewBox="0 0 24 24">
+                                        <path
+                                            d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 lg:w-1/2">
+                    <div
+                        class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
+                        <img alt="team"
+                            class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4"
+                            src="https://dummyimage.com/206x206">
+                        <div class="flex-grow sm:pl-8">
+                            <h2 class="title-font font-medium text-lg text-white">Henry Letham</h2>
+                            <h3 class="text-gray-500 mb-3">Designer</h3>
+                            <p class="mb-4">DIY tote bag drinking vinegar cronut adaptogen squid fanny pack
+                                vaporware.</p>
+                            <span class="inline-flex">
+                                <a class="text-gray-500">
+                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+                                        viewBox="0 0 24 24">
+                                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z">
+                                        </path>
+                                    </svg>
+                                </a>
+                                <a class="ml-2 text-gray-500">
+                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+                                        viewBox="0 0 24 24">
+                                        <path
+                                            d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
+                                        </path>
+                                    </svg>
+                                </a>
+                                <a class="ml-2 text-gray-500">
+                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+                                        viewBox="0 0 24 24">
+                                        <path
+                                            d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div> --}}
             </div>
         </div>
     </section>
@@ -300,7 +504,7 @@
         <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
             <a class="flex title-font font-medium items-center md:justify-start justify-center text-white">
                 <img class=" object-cover object-center rounded w-12" alt="hero"
-                    src="{{ url('storage/img/logo') }}/qma_icon.png"">
+                    src="{{ url('storage/img/logo') }}/qma_icon.png">
                 <span class="ml-3 text-xl text-white">QMA</span>
             </a>
             <p class="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">©
@@ -408,8 +612,11 @@
                 window.scroll(newX, newY);
             }, 1000 / 60); // 60 fps
         };
-    </script>
 
+        function showPostInPage(id) {
+            window.location.href = "/post/" + id;
+        }
+    </script>
 </body>
 
 </html>
