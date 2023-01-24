@@ -50,7 +50,7 @@
                                     </div>
 
                                     <!-- Team Settings -->
-                                    <x-jet-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
+                                    <x-jet-dropdown-link href="{{ route('teams.show', Auth::user()->id) }}">
                                         {{ __('Team Settings') }}
                                     </x-jet-dropdown-link>
 
