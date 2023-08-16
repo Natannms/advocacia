@@ -45,4 +45,3 @@
         </div>
     </div>
 </x-app-layout>
-{{-- {{ $data['users']->links() }} --}}

@@ -42,8 +42,14 @@
     <header class="text-gray-400 body-font fixed bg-gray-1000 w-screen">
         <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             <a class="flex title-font font-medium  justify-center text-gray-900 mb-4 md:mb-0">
-                <img class=" object-cover object-center rounded w-12" alt="hero"
-                    src="{{ url('storage/img/logo') }}/qma_icon.png">
+
+
+                @foreach ($result['images'] as $image)
+                    @if ($image->local == 'logo')
+                        <img class=" object-cover object-center rounded w-12" alt="hero"
+                            src="{{ url('storage/my_backgrounds') }}/{{ $image->image }}">
+                    @endif
+                @endforeach
                 <span class="ml-3 text-xl text-white">QMA</span>
             </a>
             <nav class="max-sm:hidden md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center menu">
@@ -84,12 +90,18 @@
             @endif @endforeach
 
     body-font py-40">
-    <div class="bg-white w-full">
+        <div class="bg-white w-full">
 
-    </div>
+        </div>
         <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
-            <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero"
-                src="{{ url('storage/img/logo') }}/qma_logo.png">
+
+            @foreach ($result['images'] as $image)
+                @if ($image->local == 'logo')
+                    <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero"
+                        src="{{ url('storage/my_backgrounds') }}/{{ $image->image }}">
+                @endif
+            @endforeach
+
             <div class="text-center lg:w-2/3 w-full">
                 {{-- <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Microdosing synth tattooed vexillologist</h1> --}}
                 <p
@@ -167,14 +179,17 @@
             </div>
             <div class="flex flex-wrapjustify-center">
                 @foreach ($result['team'] as $key => $item)
-                    <div
-                        class="xl:w-4/12 lg:w-4/12 md:w-full px-8 py-6 sm:border-l-2 sm:border-gray-800 items-center justify-center flex flex-col">
-                        <img src="{{ url('storage/img/logo') }}/{{ $item['img_name'] }}" alt=""
-                            class="rounded-full w-48">
-                        <h2 class="text-lg sm:text-xl text-indigo-900 font-medium title-font mb-2"> {{ $item->name }}
-                        </h2>
-                        <p class="leading-relaxed text-indigo-900 font-medium mb-4">{{ $item->document }}</p>
-                    </div>
+                    @if ($item->name !== 'admin')
+                        <div
+                            class="xl:w-4/12 lg:w-4/12 md:w-full px-8 py-6 sm:border-l-2 sm:border-gray-800 items-center justify-center flex flex-col">
+                            <img src="{{ url('storage/img/logo') }}/{{ $item['img_name'] }}" alt=""
+                                class="rounded-full w-48">
+                            <h2 class="text-lg sm:text-xl text-indigo-900 font-medium title-font mb-2">
+                                {{ $item->name }}
+                            </h2>
+                            <p class="leading-relaxed text-indigo-900 font-medium mb-4">{{ $item->document }}</p>
+                        </div>
+                    @endif
                 @endforeach
             </div>
             <a href="{{ route('team.index') }}"
@@ -192,8 +207,12 @@
         </div>
         <div class="container px-5 py-24 mx-auto flex flex-wrap">
             <div class="lg:w-1/2 w-full mb-10 lg:mb-0 rounded-lg overflow-hidden">
-                <img alt="feature" class="object-cover object-center h-full w-full"
-                    src="{{ url('storage/img/logo') }}/3qma.png">
+                @foreach ($result['images'] as $image)
+                    @if ($image->local == 'quem_somos')
+                        <img alt="feature" class="object-cover object-center h-full w-full"
+                            src="{{ url('storage/my_backgrounds') }}/{{ $image->image }}">
+                    @endif
+                @endforeach
             </div>
             <div class="flex flex-col flex-wrap lg:py-6 -mb-10 lg:w-1/2 lg:pl-12 lg:text-left text-center">
                 <div class="flex flex-col mb-10 lg:items-start items-center">
@@ -284,9 +303,9 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
-                    {{-- links --}}
-                    {{$result['Posts']->links()}}
+                @endforeach
+                {{-- links --}}
+                {{ $result['Posts']->links() }}
 
                 {{-- <div class="p-4 lg:w-1/2">
                     <div
@@ -503,8 +522,13 @@
     <footer class="text-gray-400 bg-gray-1000 body-font">
         <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
             <a class="flex title-font font-medium items-center md:justify-start justify-center text-white">
-                <img class=" object-cover object-center rounded w-12" alt="hero"
-                    src="{{ url('storage/img/logo') }}/qma_icon.png">
+
+                @foreach ($result['images'] as $image)
+                    @if ($image->local == 'quem_somos')
+                        <img class=" object-cover object-center rounded w-12" alt="hero"
+                            src="{{ url('storage/my_backgrounds') }}/{{ $image->image }}">
+                    @endif
+                @endforeach
                 <span class="ml-3 text-xl text-white">QMA</span>
             </a>
             <p class="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">©
