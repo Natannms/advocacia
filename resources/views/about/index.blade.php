@@ -150,7 +150,7 @@
         <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
             <a class="flex title-font font-medium items-center md:justify-start justify-center text-white">
                 @foreach ($data['images'] as $image)
-                    @if ($image->local == 'quem_somos')
+                    @if ($image->local == 'logo')
                         <img class=" object-cover object-center rounded w-12" alt="hero"
                             src="{{ url('storage/my_backgrounds') }}/{{ $image->image }}">
                     @endif
