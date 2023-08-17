@@ -14,11 +14,7 @@ class OccupationAreaController extends Controller
 
     public function about()
     {
-          $images = Image::all();
-          $data = [
-            'images' => $images
-          ];
-        return view('about.index', compact('data'));
+        return view('about.index');
     }
 
     public function dashboardOccupationAreaIndex()
@@ -39,12 +35,11 @@ class OccupationAreaController extends Controller
     {
         $occupationAreas = OccupationArea::paginate();
         $team  = Team::all();
-        $posts = Post::paginate(10);
+
         $result = [
             'occupationAreas' => $occupationAreas,
             'team' => $team,
             'images'=> Image::all(),
-            'Posts'=>$posts
         ];
 
         return view('welcome', compact('result'));

@@ -21,36 +21,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
-        $admin = User::factory()->create([
-            'name' => 'admin',
-            'email' => 'admin@admin',
-            'password' => bcrypt('admin'),
-        ]);
-        $isabelle = User::factory()->create([
-            'name' => 'Isabelle Muraro Gonçalves',
-            'email' => 'Isabelle@admin',
-            'password' => bcrypt('admin'),
-        ]);
-        $dorival = User::factory()->create([
-            'name' => 'Dorival Assi Junior',
-            'email' => 'Dorival@admin',
-            'password' => bcrypt('admin'),
-        ]);
-        $lais = User::factory()->create([
-            'name' => 'Lais Pires Queiroz Pereira',
-            'email' => 'Lais@admin',
-            'password' => bcrypt('admin'),
-        ]);
         \App\Models\User::factory(10)->create();
         \App\Models\Client::factory(3)->create();
         \App\Models\Document::factory(10)->create();
         \App\Models\Post::factory(10)->create();
         \App\Models\Comment::factory(10)->create();
+        $user = User::factory()->create([
+            'name' => 'admin',
+            'email' => 'admin@admin',
+            'password' => bcrypt('admin'),
+        ]);
 
         \App\Models\Team::factory()->create([
             'name' => 'admin',
-            'user_id' => $admin->id,
+            'user_id' => $user->id,
         ]);
 
 
@@ -284,7 +268,6 @@ class DatabaseSeeder extends Seeder
 
 
         $team = Team::create([
-            'user_id'=>$lais->id,
             'name' => 'Lais Pires Queiroz Pereira',
             'document' => 'OAB/PR 91.623',
             'img_name' => 'lais-pires-queiroz-pereira.jpg',
@@ -300,7 +283,6 @@ class DatabaseSeeder extends Seeder
         }
 
         $team = Team::create([
-            'user_id'=>$isabelle->id,
             'name' => 'Isabelle Muraro Gonçalves',
             'document' => 'OAB/PR 82.313',
             'img_name' => 'isabelle-muraro-goncalves.jpg',
@@ -317,7 +299,6 @@ class DatabaseSeeder extends Seeder
 
 
         $team = Team::create([
-            'user_id'=>$dorival->id,
             'name' => 'Dorival Assi Junior',
             'document' => 'OAB/PR 74.006',
             'img_name' => 'dorival-assi-junior.jpg',

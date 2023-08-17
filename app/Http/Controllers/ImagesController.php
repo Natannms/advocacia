@@ -15,15 +15,22 @@ class ImagesController extends Controller
      */
     public function index()
     {
-        $data = [
+        $data =[
             'images' => Image::all(),
             'teams' => Team::all()
         ];
         return view('images.index', compact('data'));
     }
+    public function profileImages()
+    {
+        $data =[
+            'teams' => Team::all()
+        ];
+        return view('profile.fotos.create', compact('data'));
+    }
     public function logoIndex()
     {
-        $data = [
+        $data =[
             'images' => Image::all()
         ];
         return view('logo.index', compact('data'));
@@ -36,49 +43,42 @@ class ImagesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
 
+    {
         $validate = $request->validate([
             'image' => 'required',
+            'local' => 'required'
         ]);
 
-        if ($request->team_id) {
-            $team = Team::find($request->team_id);
-            $team->img_name = $request->image->getClientOriginalName();
-            $team->save();
 
-            if (!$team) {
-                return redirect()->back()->with('error', 'Erro ao salvar imagem em TeamDB');
+        $request->image->storeAs('public/my_backgrounds', $request->image->getClientOriginalName());
+
+        // $image = Image::create([
+        //     'image' => $request->image->getClientOriginalName(),
+        //     'local'=> $request->local
+        // ]);
+
+        $image = Image::where('local', $request->local)->first();
+        if(!$image){
+            // criar
+            $create =  new Image();
+            $create->image = $request->image->getClientOriginalName();
+            $create-> local = $request-> local;
+            $create->save();
+            if(!$create){
+                return redirect()->back()->with('error', 'Erro ao salvar imagem');
             }
-
-            $request->image->storeAs('public/img/logo', $request->image->getClientOriginalName());
-
-        } else {
-
-            $request->image->storeAs('public/my_backgrounds', $request->image->getClientOriginalName());
-            $local = $request->local ?? 'first_fold';
-            $image = Image::where('local', $local)->first();
-            if(!$image){
-
-                $img =  Image::create([
-                    'image' => $request->image->getClientOriginalName(),
-                    'local' => $local
-                ]);
-
-                if(!$img){
-                    return redirect()->back()->with('error', 'Imagem não pode ser cadastrada');
-                }
-            }else{
-                $image-> image = $request->image->getClientOriginalName();
-                $image->save();
-
-                if(!$image){
-                    return redirect()->back()->with('error', 'Imagem não pode ser cadastrada');
-                }
-            }
-
         }
+        if($image){
+            // atualizar
+            $update = Image::find($image->id);
+            $update-> image = $request->image->getClientOriginalName();
+            $update->save();
 
+            if(!$update){
+                return redirect()->back()->with('error', 'Erro ao salvar imagem');
+            }
+        }
         return redirect()->back()->with('success', 'Imagem salva com sucesso');
     }
     public function logoStore(Request $request)
@@ -92,10 +92,10 @@ class ImagesController extends Controller
 
         $image = Image::create([
             'image' => $request->image->getClientOriginalName(),
-            'local' => 'logo'
+            'local'=> 'logo'
         ]);
 
-        if (!$image) {
+        if(!$image){
             return redirect()->back()->with('error', 'Erro ao salvar Logo');
         }
 
@@ -134,7 +134,7 @@ class ImagesController extends Controller
     public function destroy($id)
     {
         $image = Image::find($id);
-        if (!$image) {
+        if(!$image){
             return redirect()->back()->with('error', 'Erro ao deletar imagem');
         }
 

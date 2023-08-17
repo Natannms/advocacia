@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
-use App\Models\Image;
 use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -18,13 +17,13 @@ class Controller extends BaseController
     {
         //retornar todos os usuarios contidos na tabela clients
 
-       $users =  User::all();
+       $users =  User::query()
+            ->join('clients', 'users.id', '=', 'clients.user_id')
+            ->select('users.*')
+            ->paginate(10);
        ;
-
-       $images = Image::all();
        $data = [
-              'users' => $users,
-              'images'=>$images
+              'users' => $users
        ];
         return view('dashboard', compact('data'));
     }

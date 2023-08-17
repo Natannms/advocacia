@@ -11,33 +11,28 @@
                 {{-- <x-jet-welcome /> --}}
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
                     <div class="mt-8 text-2xl text-green-600">
-                        Usuários
+                        Clientes
                     </div>
 
                     <div class="mt-6 text-gray-200  px-4 py-4">
                         <ul
                             class="w-full text-sm font-medium text-gray-90 rounded-lg border border-gray-200 dark:bg-gray-200 dark:border-gray-600 dark:text-dark">
                             @foreach ($data['users'] as $key => $user)
-                                @if ($user->id == 2 || $user->id == 3 || $user->id == 4)
-                                    <li
-                                        class="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600 flex justify-between">
-                                        <span class="text-gray-700">{{ $user->name }}</span>
-                                        {{-- <div class="actions flex">
-                                            <a href="{{ route('documents.show', $user->id) }}"
-                                                class="text-green-600 hover:text-purple-900 ml-4">Documents</a>
-                                            <a href="{{ route('users.edit', $user->id) }}"
-                                                class="text-green-600 hover:text-green-900 ml-4">Editar</a>
-                                            <form class="ml-4" action="{{ route('users.destroy', $user->id) }}"
-                                                method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="text-red-600 hover:text-red-900">Eliminar</button>
-                                            </form>
-                                        </div> --}}
+                                <li class="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600 flex justify-between">
+                                    <span class="text-gray-700">{{ $user->name}}</span>
+                                    <div class="actions flex">
+                                        <a href="{{ route('documents.show', $user->id) }}"
+                                            class="text-green-600 hover:text-purple-900 ml-4">Documents</a>
+                                        <a href="{{ route('users.edit', $user->id) }}"
+                                            class="text-green-600 hover:text-green-900 ml-4">Editar</a>
+                                        <form class="ml-4" action="{{ route('users.destroy', $user->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-600 hover:text-red-900">Eliminar</button>
+                                        </form>
+                                    </div>
 
-                                    </li>
-                                @endif
+                                </li>
                             @endforeach
                         </ul>
                     </div>
@@ -46,3 +41,4 @@
         </div>
     </div>
 </x-app-layout>
+{{ $data['users']->links() }}

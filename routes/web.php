@@ -63,6 +63,7 @@ Route::middleware([
     Route::get('/imagens', [ImagesController::class , 'index'])->name('images.index');
     Route::post('/imagens/store', [ImagesController::class , 'store'])->name('image.store');
     Route::get('/imagens/delete/{id}', [ImagesController::class , 'destroy'])->name('image.delete');
+    Route::get('/profile/fotos', [ImagesController::class, 'profileImages'])->name('profile.fotos');
 
     Route::post('/logo/store', [ImagesController::class , 'logoStore'])->name('logo.store');
     Route::get('/logo', [ImagesController::class , 'logoIndex'])->name('logo.index');
