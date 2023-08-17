@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Configuração de imagens do site') }}
+            {{ __('Fotos de Perfil') }}
         </h2>
 
     </x-slot>
@@ -28,9 +28,11 @@
                     <x-jet-input id="image" class="block mt-1 w-96" type="file" name="image" :value="old('image')"
                         required autofocus />
                     <select name="local" id="local">
-                        <option value="logo">Logo da empresa</option>
-                        <option value="first_fold">Primeira dobra da pagina</option>
-                        <option value="quem_somos">Página quem somos</option>
+                        @foreach ($data['teams'] as $profile)
+                            @if ($profile->name !== 'admin')
+                                <option value="{{$profile->id}}">{{$profile->name}}</option>
+                            @endif
+                        @endforeach
                     </select>
                     <x-jet-button class="ml-4">
                         {{ __('Salvar imagem') }}
@@ -49,7 +51,7 @@
                     @endforeach
                 </div> --}}
             </form>
-{{--
+            {{--
             @foreach ($data['teams'] as $profile)
             @if ($profile->name !== 'admin')
                 <option value="quem_somos">Primeira dobra da pagina</option>
